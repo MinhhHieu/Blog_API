@@ -130,3 +130,38 @@ module.exports.deleteBlog = async (req, res) => {
     });
   }
 };
+
+// [DELETE] /api/v1/blogs/delete-multi
+module.exports.deleteMulti = async (req, res) => {
+  try {
+    const { ids, key} = req.body;
+
+    switch (key) {
+      case "delete":
+        await Blog.updateMany( 
+          {
+          _id: { $in: ids }
+        },{
+          deleted: true,
+          deletedAt: new Date()
+        });
+        res.json({
+          code: 200,
+          message: "Xóa nhiều BLOG thành công!"
+        });
+        break;
+    
+      default:
+        res.json({
+          code: 400,
+          message: "Error!"
+        });
+        break;
+    }
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Error!"
+    });
+  }
+};

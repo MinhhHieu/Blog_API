@@ -27,4 +27,6 @@ router.patch(
 
 router.delete("/delete/:id", controller.deleteBlog);
 
+router.delete("/delete-multi", controller.deleteMulti);
+
 module.exports = router;
