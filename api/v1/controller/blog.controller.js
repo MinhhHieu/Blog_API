@@ -88,4 +88,23 @@ module.exports.createPost = async (req, res) => {
         message: "Error!!"
     });
   }
-}
+};
+
+// [POST] /api/v1/edit/:id
+module.exports.edit = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await Blog.updateOne({ _id: id }, req.body);
+
+    res.json({
+      code: 200,
+      message: "Sửa thành công!"
+    });
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Error!!"
+    });
+  }
+};

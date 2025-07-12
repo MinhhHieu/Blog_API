@@ -18,4 +18,11 @@ router.post(
   controller.createPost
 );
 
+router.post(
+  "/edit/:id",
+  upload.single("image"),
+  uploadCloud.upload,
+  controller.edit
+);
+
 module.exports = router;
