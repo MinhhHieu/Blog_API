@@ -31,7 +31,16 @@ module.exports.index = async (req, res) => {
     );
     // End Pagination
 
+    // Sort
+    const sort = {};
+
+    if (req.query.sortKey && req.query.sortValue) {
+      sort[req.query.sortKey] = req.query.sortValue;
+    };
+    // End Sort
+
     const blogs = await Blog.find(find)
+    .sort(sort)
     .limit(objectPagination.limitItems)
     .skip(objectPagination.skip);
 
