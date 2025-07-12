@@ -71,3 +71,21 @@ module.exports.detail = async (req, res) => {
     });
   }
 };
+
+// [POST] /api/v1/blogs/create
+module.exports.createPost = async (req, res) => {
+  try {
+    const blogs = new Blog(req.body);
+    const data = blogs.save();
+    res.json({
+      code: 200,
+      message: "Tạo thành công!",
+      data: data
+    });
+  } catch (error) {
+    res.json({
+        code: 400,
+        message: "Error!!"
+    });
+  }
+}

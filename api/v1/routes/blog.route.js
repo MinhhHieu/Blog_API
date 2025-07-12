@@ -1,10 +1,21 @@
- const express = require("express");
- const router = express.Router();
+const express = require("express");
+const multer = require("multer");
+const router = express.Router();
+const upload = multer();
 
- const controller = require("../controller/blog.controller");
+const uploadCloud = require("../middlewares/uploadCloud.middlewares");
 
- router.get("/", controller.index);
+const controller = require("../controller/blog.controller");
 
- router.get("/detail/:id", controller.detail);
+router.get("/", controller.index);
 
- module.exports = router;
+router.get("/detail/:id", controller.detail);
+
+router.post(
+  "/create",
+  upload.single("image"),
+  uploadCloud.upload,
+  controller.createPost
+);
+
+module.exports = router;
