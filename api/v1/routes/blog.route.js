@@ -18,7 +18,7 @@ router.post(
   controller.createPost
 );
 
-router.post(
+router.patch(
   "/edit/:id",
   upload.single("image"),
   uploadCloud.upload,

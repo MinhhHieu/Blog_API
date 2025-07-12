@@ -90,7 +90,7 @@ module.exports.createPost = async (req, res) => {
   }
 };
 
-// [POST] /api/v1/edit/:id
+// [PATCH] /api/v1/edit/:id
 module.exports.edit = async (req, res) => {
   try {
     const id = req.params.id;
@@ -108,3 +108,4 @@ module.exports.edit = async (req, res) => {
     });
   }
 };
+
