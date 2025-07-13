@@ -7,6 +7,8 @@ const uploadCloud = require("../middlewares/uploadCloud.middlewares");
 
 const controller = require("../controller/blog.controller");
 
+const blogValidate = require("../validates/blog.validates");
+
 router.get("/", controller.index);
 
 router.get("/detail/:id", controller.detail);
@@ -15,6 +17,7 @@ router.post(
   "/create",
   upload.single("image"),
   uploadCloud.upload,
+  blogValidate.createPost,
   controller.createPost
 );
 
